@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { RSA_NO_PADDING } = require('node:constants');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
@@ -110,7 +109,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   try{
     const productData = await Product.destroy({
       where: {
